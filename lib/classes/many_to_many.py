@@ -69,6 +69,8 @@ class Author:
         return topic_areas if topic_areas else None
 
 class Magazine:
+    all = []
+    
     def __init__(self, name, category):
         if not isinstance(name, str) or not 2 <= len(name) <= 16:
             raise ValueError("Name must be of type str and between 2 and 16 characters")
@@ -76,6 +78,13 @@ class Magazine:
             raise ValueError("Category must be of type str and not empty")
         self.name = name
         self.category = category
+        self.__class__.all.append(self)
+        
+    @classmethod
+    def top_publisher(cls):
+        if not cls.all:
+            return None
+        return max(cls.all, key=lambda magazine: len(magazine.articles()))
         
     @property
     def name(self):
