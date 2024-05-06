@@ -53,7 +53,7 @@ class Author:
 
     @name.setter
     def name(self, value):
-        pass  # Silently ignore attempts to change the name
+        pass  
 
     def articles(self):
         return [article for article in Article.all if article.author == self]
